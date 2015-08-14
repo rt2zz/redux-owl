@@ -5,6 +5,13 @@ This is a simple method for supporting offline sync. When two way concurrency su
 
 The basic concept is, try to execute the action, on failure add it to a retry queue. Every so often process the retry queue until success is achieved.
 
+### @TODO
+improve api (reducer vs store enhancer?)
+add processing rules
+- configurable per action retry back off
+- configurable processing (interval, network monitor)
+- should process ever accelerate back off schedule? e.g. network monitor returns true
+
 Setup
 ```js
 import {owlReducer, enableOwl} from 'redux-owl'

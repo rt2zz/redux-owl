@@ -118,6 +118,6 @@ function createRetryAction(action){
   return {
     ...action,
     type: action.owl.contract.types[0],
-    owl: { ...action.owl, phase: 'REQUEST', attempt: action.owl.attemp+1 },
+    owl: { ...action.owl, phase: 'REQUEST', attempt: action.owl.attempt+1 },
   }
 }
