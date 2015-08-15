@@ -1,9 +1,11 @@
 # Redux Owl
 Redux One Way Linking
 
-This is a simple method for supporting offline sync. When two way concurrency such as scuttlebutt/CRDT is not possible (e.g. third party api's) or is not desired (complexity), this is a simple alternative.
+This is a simple method for supporting offline sync. When two way concurrency such as scuttlebutt/CRDT is not possible (e.g. third party api's) or is not desired (complexity), this is a simple alternative.  
 
-The basic concept is, try to execute the action, on failure add it to a retry queue. Every so often process the retry queue until success is achieved. Redux owl only depends on redux, but you will also need to suppor the following
+The basic concept is, try to execute the action, on failure add it to a retry queue. Every so often process the retry queue until success is achieved.  
+
+To function properly your app will also need to support the following:
 - State persistence ([redux-persist](https://github.com/rt2zz/redux-persist) or [redux-localstorage](https://github.com/elgerlambert/redux-localstorage))
 - Side effects are triggered by actions ([redux-remotes](https://github.com/rt2zz/redux-remotes) or [other middleware](https://github.com/rackt/redux/blob/master/examples/real-world/middleware/api.js))
 
@@ -47,10 +49,9 @@ import { handleOwlAction } from 'redux-owl'
 
 export default remoteActionMap({
   RECORD_INSERT({action, getState, dispatch, finish}){
-    console.log('record insert remote')
-    handleOwlAction(action, finish, (success, failure) => {
-      if(Math.random() > .8){ setTimeout(success, 1000) }
-      else { setTimeout(failure, 1000) }
+    handleOwlAction(action, finish, (success, fail) => {
+      if(Math.random() > .5){ setTimeout(success, 1000) }
+      else { setTimeout(fail, 1000) }
     })
   }
 })
