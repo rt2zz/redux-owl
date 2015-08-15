@@ -15,6 +15,7 @@ add processing rules
 - configurable per action retry back off
 - configurable processing (interval, network monitor)
 - should process ever accelerate back off schedule? e.g. network monitor returns true
+- extract basic `retry action` logic into seperate module. Have owl focus more on the network layer.
 
 Setup
 ```js
