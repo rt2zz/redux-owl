@@ -3,7 +3,9 @@ Redux One Way Linking
 
 This is a simple method for supporting offline sync. When two way concurrency such as scuttlebutt/CRDT is not possible (e.g. third party api's) or is not desired (complexity), this is a simple alternative.
 
-The basic concept is, try to execute the action, on failure add it to a retry queue. Every so often process the retry queue until success is achieved.
+The basic concept is, try to execute the action, on failure add it to a retry queue. Every so often process the retry queue until success is achieved. Redux owl only depends on redux, but you will also need to suppor the following
+- State persistence ([redux-persist](https://github.com/rt2zz/redux-persist) or [redux-localstorage](https://github.com/elgerlambert/redux-localstorage))
+- Side effects are triggered by actions ([redux-remotes](https://github.com/rt2zz/redux-remotes) or [other middleware](https://github.com/rackt/redux/blob/master/examples/real-world/middleware/api.js))
 
 ### @TODO
 improve api (reducer vs store enhancer?)
